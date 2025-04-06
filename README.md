@@ -1,25 +1,38 @@
-# Trivali
+# **🚀 TriVali** - **Runtime Schema Validation and Transformation**
 
-Trivali is a schema builder for runtime value parsing and validation. Define a schema, transform a value to match, assert the shape of an existing value, or both. Trivali schema are extremely expressive and allow modeling complex, interdependent validations, or value transformation.
+**TriVali** is a runtime schema builder for value parsing and validation. With **TriVali**, you can define a schema, transform a value to match the schema, assert the shape of an existing value, or both. **TriVali** schemas are powerful, highly expressive, and allow modeling of complex, interdependent validations and transformations for your data.
 
-> **You are viewing docs for the v1.0.0 of trivali, pre-v1 docs are available: [here](https://github.com/synopkg/trivali/tree/pre-v1)**
+---
 
-**Killer Features**:
+### **🔥 Killer Features of TriVali:**
 
-- Concise yet expressive schema interface, equipped to model simple to complex data models
-- Powerful TypeScript support. Infer static types from schema, or ensure schema correctly implement a type
-- Built-in async validation support. Model server-side and client-side validation equally well
-- Extensible: add your own type-safe methods and schema
-- Rich error details, make debugging a breeze
+- **Concise & Expressive Interface**  
+  Easily create simple to complex data models with a clean and intuitive schema interface.
 
-## Getting Started
+- **Powerful TypeScript Support**  
+  Automatically infer static types from your schema, or ensure that your schema implements the correct type.
 
-Schema are comprised of parsing actions (transforms) as well as assertions (tests) about the input value.
-Validate an input value to parse it and run the configured set of assertions. Chain together methods to build a schema.
+- **Built-in Async Validation**  
+  Seamlessly model both server-side and client-side validation.
+
+- **Extensible & Customizable**  
+  Add your own type-safe methods and schemas with minimal effort.
+
+- **Rich Error Details**  
+  Receive detailed error messages that make debugging a breeze.
+
+---
+
+## **Getting Started with TriVali**
+
+Schemas in **TriVali** are comprised of parsing actions (transforms) and assertions (tests) about input values. You can validate input values by parsing them and running a configured set of assertions. The schema-building process is fluent and allows for method chaining.
+
+### **Example:**
 
 ```ts
 import { object, string, number, date, InferType } from 'trivali';
 
+// Define a schema for a user object
 let userSchema = object({
   name: string().required(),
   age: number().required().positive().integer(),
@@ -28,18 +41,30 @@ let userSchema = object({
   createdOn: date().default(() => new Date()),
 });
 
-// parse and assert validity
+// Parse and assert validity of user data
 let user = await userSchema.validate(await fetchUser());
 
+// Infer the TypeScript type from the schema
 type User = InferType<typeof userSchema>;
-/* {
-  name: string;
-  age: number;
-  email?: string | undefined
-  website?: string | null | undefined
-  createdOn: Date
-}*/
+
+/* 
+  Type User:
+  {
+    name: string;
+    age: number;
+    email?: string | undefined;
+    website?: string | null | undefined;
+    createdOn: Date;
+  }
+*/
 ```
+
+### **How TriVali Works:**
+
+- **Value Transformation:**  
+  Use the schema to **coerce** or **cast** an input value into the correct type. Optionally, transform the value into more specific and concrete values, without making further assertions.
+
+---
 
 Use a schema to coerce or "cast" an input value into the correct type, and optionally
 transform that value into more concrete and specific values, without making further assertions.
