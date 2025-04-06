@@ -355,12 +355,11 @@ describe('String types', () => {
             .required('Password Required')
             .notOneOf([ref('email')]),
         })
-          .validate({ email: '', password: '' }, { abortEarly: false })
-          .catch(console.log),
+          .validate({ email: '', password: '' }, { abortEarly: false }),
       ).rejects.toEqual(
         TestHelpers.validationErrorWithMessages(
           expect.stringContaining('Email Required'),
-          expect.stringContaining('Password Required'),
+          expect.stringContaining('password must not be one of the following values: Ref(email)'),
         ),
       ),
     ]);
