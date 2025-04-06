@@ -1,4 +1,5 @@
-# **🚀 TriVali** - **Tri" for trigger, "Vali" for validation, suggesting a tool that triggers schema validation.**
+# 🚀 TriVali – **Trigger & Validate Schema Effortlessly**  
+*(Pronounced: "Tri" like "trigger", "Vali" like "validation")*
 
 **TriVali** is a runtime schema builder for value parsing and validation. With **TriVali**, you can define a schema, transform a value to match the schema, assert the shape of an existing value, or both. **TriVali** schemas are powerful, highly expressive, and allow modeling of complex, interdependent validations and transformations for your data.
 
